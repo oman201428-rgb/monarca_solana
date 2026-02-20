@@ -1,11 +1,14 @@
 # Sube solo lo necesario al repo monarca_solana (sin integracion/, .env, target/, etc.).
 # Ejecutar desde la carpeta solana: .\scripts\subir-repo-github.ps1
-# Requiere: git instalado y acceso al repo (GitHub CLI, token o SSH).
+# Requiere: git instalado; la cuenta con la que hagas push debe tener permiso en el repo.
 
 $ErrorActionPreference = "Stop"
 $ScriptDir = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path (Get-Location) }
 $SolanaRoot = (Resolve-Path (Join-Path $ScriptDir "..")).Path
-$Remote = "https://github.com/movilextra3-hue/monarca_solana.git"
+$Remote = "https://github.com/oman201428-rgb/monarca_solana.git"
+# Identidad para commits (solo nombre público; no se guardan contraseñas ni tokens)
+$GitUser = "oman201428-rgb"
+$GitEmail = "oman201428-rgb@users.noreply.github.com"
 
 Push-Location $SolanaRoot
 try {
@@ -14,6 +17,9 @@ try {
         git init
         git branch -M main
     }
+    # Identidad local solo para este repo (protege datos sensibles; no usa email real)
+    git config user.name $GitUser 2>$null
+    git config user.email $GitEmail 2>$null
     $rem = git remote get-url origin 2>$null
     if (-not $rem) {
         Write-Host "Añadiendo remote origin: $Remote" -ForegroundColor Cyan
@@ -43,6 +49,11 @@ try {
     git commit -m "Add Solana program (Anchor) - verified build"
     Write-Host "Subiendo a origin main..." -ForegroundColor Cyan
     git push -u origin main
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[AVISO] Push falló. Crea el repo en GitHub: https://github.com/new?name=monarca_solana (con la cuenta oman201428-rgb)." -ForegroundColor Yellow
+        Write-Host "  Luego ejecuta de nuevo: git push -u origin main" -ForegroundColor Gray
+        exit 1
+    }
     Write-Host "[OK] Repo actualizado. Luego ejecuta: npm run verificar-programa-build" -ForegroundColor Green
 }
 catch {

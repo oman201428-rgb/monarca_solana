@@ -107,11 +107,13 @@ elif [ -f "$REPO_FILE" ]; then
 fi
 if [ -n "$REPO_URL" ] && command -v solana-verify &>/dev/null; then
   echo "[3/3] Subiendo verificación on-chain (solana-verify verify-from-repo)..."
+  echo "[INFO] Repo: $REPO_URL | mount-path: $MOUNT_PATH"
   set +e
   COMMIT_ARG=""
   [ -n "$VERIFY_COMMIT_HASH" ] && COMMIT_ARG="--commit-hash $VERIFY_COMMIT_HASH"
   REMOTE_ARG=""
   [ -n "$VERIFY_REMOTE" ] && [ "$VERIFY_REMOTE" != "0" ] && REMOTE_ARG="--remote"
+  # Si mount-path es "." la raíz del repo tiene Cargo.lock (workspace Anchor)
   solana-verify verify-from-repo $REMOTE_ARG "$REPO_URL" --program-id "$PROGRAM_ID" --library-name "$LIB_NAME" \
     --mount-path "$MOUNT_PATH" $COMMIT_ARG -y -u mainnet-beta \
     -k "$SOLANA_ROOT/integracion/id.json" 2>&1

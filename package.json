@@ -21,6 +21,8 @@
     "verificar-listados": "npx ts-node scripts/verificar-listados-token.ts",
     "verificar-token": "pwsh -File scripts/abrir-verificacion-token-solana.ps1",
     "verificar-programa-build": "pwsh -File scripts/verificar-programa-verified-build.ps1",
+    "subir-github": "pwsh -File scripts/subir-repo-github.ps1",
+    "subir-y-verificar": "pwsh -File scripts/subir-repo-github.ps1 && pwsh -File scripts/verificar-programa-verified-build.ps1",
     "instalar-verified-build": "pwsh -File scripts/instalar-y-configurar-verified-build.ps1",
     "pre-vuelo-verified-build": "pwsh -File scripts/verificar-entorno-verified-build.ps1",
     "verified-build-completo": "pwsh -File scripts/ejecutar-verified-build-completo.ps1",
