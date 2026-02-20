@@ -1,0 +1,16 @@
+{
+  "name": "MONARCA",
+  "logoURI": "https://gateway.pinata.cloud/ipfs/bafybeiflwivdygssbqyf3vwlzzyd4wixmonln3lp3zwwgyiy4jyiwgvpiu",
+  "timestamp": "2025-02-09T00:00:00.000Z",
+  "version": { "major": 1, "minor": 0, "patch": 0 },
+  "tokens": [
+    {
+      "chainId": 101,
+      "address": "6cfzjBSA6KSgUCGDCSPetyDUnxRBG1G1wyE7dLxnL34m",
+      "symbol": "MNCA",
+      "name": "MONARCA",
+      "decimals": 6,
+      "logoURI": "https://gateway.pinata.cloud/ipfs/bafybeiflwivdygssbqyf3vwlzzyd4wixmonln3lp3zwwgyiy4jyiwgvpiu"
+    }
+  ]
+}

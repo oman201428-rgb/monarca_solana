@@ -1,0 +1,29 @@
+# Anchor / Solana
+.anchor/
+target/
+**/*.rs.bk
+test-ledger/
+
+# Node
+node_modules/
+dist/
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Env (no subir claves)
+.env
+.env.local
+datos-api.env
+*.keypair.json
+
+# Integración: datos locales y sensibles (nunca subir)
+# Keypairs, direcciones personales, mint local; el script usa VERIFY_REPO_URL o archivo local
+integracion/

@@ -1,0 +1,15 @@
+{
+  "name": "MONARCA",
+  "symbol": "MNCA",
+  "description": "MONARCA (MNCA) is a multi-chain institutional-grade token with Diamond EIP-2535 architecture, post-quantum cryptography, KYC/AML compliance, and cross-chain interoperability via LayerZero.",
+  "image": "https://gateway.pinata.cloud/ipfs/bafybeiflwivdygssbqyf3vwlzzyd4wixmonln3lp3zwwgyiy4jyiwgvpiu",
+  "logoURI": "https://gateway.pinata.cloud/ipfs/bafybeiflwivdygssbqyf3vwlzzyd4wixmonln3lp3zwwgyiy4jyiwgvpiu",
+  "external_url": "https://www.monarcaproject.com",
+  "decimals": 6,
+  "initialMint": 500000000000,
+  "tags": ["utility", "defi", "governance", "cross-chain"],
+  "extensions": {
+    "coingeckoId": "",
+    "website": "https://www.monarcaproject.com"
+  }
+}

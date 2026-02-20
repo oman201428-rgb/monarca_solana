@@ -1,0 +1,4 @@
+# Pega tu JWT de Pinata después del = (en la línea PINATA_JWT=).
+# Este archivo no se sube al repo. Guárdalo como: datos-api.env (en esta misma carpeta solana).
+
+PINATA_JWT=

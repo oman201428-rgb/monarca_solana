@@ -1,0 +1,31 @@
+[toolchain]
+# Imagen Docker: v0.29 no existe en Hub; v0.31.1 existe y compila con patch indexmap
+anchor_version = "0.31.1"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.devnet]
+monarca_solana = "97k3YzUyZWYPVYCkMRkaHbpARiV4tzgSfDYVdbZg5Nbv"
+
+[programs.localnet]
+monarca_solana = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+
+[programs.mainnet]
+monarca_solana = "97k3YzUyZWYPVYCkMRkaHbpARiV4tzgSfDYVdbZg5Nbv"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+# Todo apunta a la carpeta integracion/ del proyecto
+wallet = "integracion/id.json"
+
+[scripts]
+test = "npx ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+
+[hooks]
+# Asegura que el programa esté compilado antes de los tests (target/types y .so).
+pre_test = "anchor build"

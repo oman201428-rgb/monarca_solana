@@ -1,0 +1,55 @@
+# Sube solo lo necesario al repo monarca_solana (sin integracion/, .env, target/, etc.).
+# Ejecutar desde la carpeta solana: .\scripts\subir-repo-github.ps1
+# Requiere: git instalado y acceso al repo (GitHub CLI, token o SSH).
+
+$ErrorActionPreference = "Stop"
+$ScriptDir = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path (Get-Location) }
+$SolanaRoot = (Resolve-Path (Join-Path $ScriptDir "..")).Path
+$Remote = "https://github.com/movilextra3-hue/monarca_solana.git"
+
+Push-Location $SolanaRoot
+try {
+    if (-not (Test-Path ".git")) {
+        Write-Host "Inicializando git en $SolanaRoot..." -ForegroundColor Cyan
+        git init
+        git branch -M main
+    }
+    $rem = git remote get-url origin 2>$null
+    if (-not $rem) {
+        Write-Host "Añadiendo remote origin: $Remote" -ForegroundColor Cyan
+        git remote add origin $Remote
+    } elseif ($rem -ne $Remote) {
+        Write-Host "[AVISO] origin ya existe: $rem" -ForegroundColor Yellow
+        Write-Host "Para usar monarca_solana: git remote set-url origin $Remote" -ForegroundColor Gray
+    }
+
+    Write-Host "Comprobando .gitignore (integracion/ debe estar ignorado)..." -ForegroundColor Cyan
+    $ok = Get-Content ".gitignore" -Raw | Select-String -Pattern "integracion" -Quiet
+    if (-not $ok) {
+        Write-Host "[ERROR] Añade integracion/ a .gitignore antes de subir." -ForegroundColor Red
+        exit 1
+    }
+
+    Write-Host "Añadiendo archivos (se respeta .gitignore)..." -ForegroundColor Cyan
+    git add -A
+    $status = git status --short 2>&1
+    if (-not $status) {
+        Write-Host "Nada que subir (todo ya está en el último commit)." -ForegroundColor Yellow
+        Write-Host "Para forzar push: git push -u origin main" -ForegroundColor Gray
+        exit 0
+    }
+    Write-Host $status
+
+    git commit -m "Add Solana program (Anchor) - verified build"
+    Write-Host "Subiendo a origin main..." -ForegroundColor Cyan
+    git push -u origin main
+    Write-Host "[OK] Repo actualizado. Luego ejecuta: npm run verificar-programa-build" -ForegroundColor Green
+}
+catch {
+    Write-Host "[ERROR] $_" -ForegroundColor Red
+    Write-Host "Si falla la autenticación: usa GitHub CLI (gh auth login) o configura un token/SSH." -ForegroundColor Yellow
+    exit 1
+}
+finally {
+    Pop-Location
+}

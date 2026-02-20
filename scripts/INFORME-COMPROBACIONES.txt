@@ -1,0 +1,162 @@
+=== EJECUCIÓN DE COMPROBACIONES ===
+
+Token referencia: 38gRbAsqwiZMhMojWN3pFt27PCSitUfRGju3RDUi1QyD
+MNCA:             6cfzjBSA6KSgUCGDCSPetyDUnxRBG1G1wyE7dLxnL34m
+
+[1/5] Comprobar argumento Phantom (MNCA tiene name/symbol/uri/JSON/imagen)...
+    OK
+
+[2/5] Metadata on-chain (ref y MNCA: URI, JSON, imagen)...
+    OK (ambos con metadata completa)
+
+[3/5] Listados (Jupiter validated, Solana Labs, CoinGecko)...
+    (solo informativo; ver tabla en salida)
+
+[4/5] Liquidez (DexScreener) ref vs MNCA...
+    Ref pares: 0 | MNCA pares: 1
+
+[5/5] Comparación on-chain (mint, autoridades, metadata)...
+    OK
+
+=== RESUMEN ===
+
+| Comprobación           | Resultado |
+|------------------------|-----------|
+| MNCA cumple Phantom    | OK |
+| Metadata ref+MNCA OK   | OK |
+| Ref tiene pares DEX    | No (0) |
+| MNCA tiene pares DEX   | Sí (1) |
+
+=== RAZÓN VERDADERA (según comprobaciones) ===
+
+MNCA cumple Metaplex (Phantom). Ref y MNCA con metadata OK. Liquidez: ref=0, MNCA=1.
+Para mostrarse en todas partes: logo URL estable + opcional verify.jup.ag.
+
+=== SALIDA COMPLETA DE CADA COMPROBACIÓN ===
+
+--- Phantom (MNCA Metaplex) ---
+=== Comprobación: argumento real y que funciona ===
+
+Argumento: Phantom muestra nombre/símbolo/logo usando Metaplex on-chain
+(name, symbol, uri → JSON con image). Ver: https://docs.phantom.com/best-practices/tokens/home-tab-fungibles
+
+Mint MNCA: 6cfzjBSA6KSgUCGDCSPetyDUnxRBG1G1wyE7dLxnL34m
+Metadata PDA: GqZ6MfsGMzfDpunVsEcWC1RoqhuDEFNvGvh38dz2cZWG
+
+[0/5] Documentación Phantom: prioriza metadata on-chain...
+      OK  (docs.phantom.com confirman uso de metadata on-chain)
+
+[1/5] Cuenta Metadata on-chain existe...
+      OK
+
+[2/5] name, symbol, uri en cuenta Metadata...
+      OK  name="MONARCA" symbol="MNCA" uri=https://gateway.pinata.cloud/ipfs/QmexnKdSdy7ipT3v...
+
+[3/5] URI accesible (GET)...
+      OK
+
+[4/5] JSON en URI tiene name, symbol, image/logoURI...
+      OK  image=https://gateway.pinata.cloud/ipfs/bafybeiflwivdygs...
+
+[5/5] URL de imagen accesible...
+      OK
+
+=== Resultado ===
+
+Comprobado: MNCA cumple todos los pasos que Phantom usa para mostrar
+nombre, símbolo e imagen. El argumento es real y funciona para este token.
+
+--- Metadata on-chain ref+MNCA ---
+Comprobación metadata on-chain (URI → JSON → imagen)
+
+Referencia: 38gRbAsqwiZMhMojWN3pFt27PCSitUfRGju3RDUi1QyD
+MNCA:      6cfzjBSA6KSgUCGDCSPetyDUnxRBG1G1wyE7dLxnL34m
+
+=== RESULTADOS (solo comprobado) ===
+
+| Criterio                | Referencia | MNCA (nosotros) |
+|-------------------------|------------|-----------------|
+| Tiene metadata on-chain | Sí | Sí |
+| Name on-chain           | DOGGYHOT     | MONARCA      |
+| Symbol on-chain         | DGH          | MNCA         |
+| URI extraída            | Sí | Sí |
+| URI accesible (HTTP)    | Sí | Sí |
+| JSON name/symbol/image  | Sí | Sí |
+| Imagen carga            | Sí | Sí |
+
+Ref name on-chain: DOGGYHOT
+Ref symbol on-chain: DGH
+Ref URI: https://gateway.irys.xyz/I3P60rhqpCQb8HBeF8lQXDrlLiNXzMrGSKkaLC945_g
+MNCA name on-chain: MONARCA
+MNCA symbol on-chain: MNCA
+MNCA URI: https://gateway.pinata.cloud/ipfs/QmexnKdSdy7ipT3vCywxCsuE4Y62vtengraoGay5uJWTz5
+
+Ref detalle: URI + JSON + imagen OK
+MNCA detalle: URI + JSON + imagen OK
+
+--- Listados ---
+Comprobando listados (sin suposiciones)
+
+Token referencia: 38gRbAsqwiZMhMojWN3pFt27PCSitUfRGju3RDUi1QyD
+MNCA (nosotros):  6cfzjBSA6KSgUCGDCSPetyDUnxRBG1G1wyE7dLxnL34m
+
+=== RESULTADOS (comprobado ahora) ===
+
+| Fuente                          | Ref (38gRb...) | MNCA (nosotros) | Detalle |
+|---------------------------------|----------------|-----------------|---------|
+| Jupiter (token.jup.ag/strict)    | No             | No              | no disponible (fetch y curl fallaron) |
+| Jupiter (validated-tokens.csv GitHub) | No             | No              | validated: 781 tokens |
+| Jupiter (token.jup.ag/all)       | No             | No              | no disponible (fetch y curl fallaron) |
+| Solana Labs token-list (GitHub)  | No             | No              | tokens: 13644 |
+| CoinGecko (coins/list)           | No             | No              | solana coins: 5793 |
+| CoinGecko (coins/solana/contract/<mint>) | No             | No              |  |
+
+--- Liquidez DexScreener ---
+=== Razón real: por qué el otro se muestra y el nuestro no ===
+
+Jupiter solo indexa tokens con mercado y liquidez (≥500 USD cada lado).
+Comprobando pares y liquidez en DexScreener para ambos mints.
+
+Token REFERENCIA (38gRb...):
+  Pares encontrados: 0
+  Liquidez total (USD, aprox.): 0.00
+
+MNCA (nosotros) (6cfzj...):
+  Pares encontrados: 1
+  Liquidez total (USD, aprox.): 31.18
+  Par 1 : MNCA / SOL | liq USD: 31.18
+
+=== Conclusión ===
+
+Referencia: tiene al menos un par con ≥500 USD liquidez? NO
+MNCA:       tiene al menos un par con ≥500 USD liquidez? NO
+
+→ COMPROBADO: El token de REFERENCIA tiene 0 pares en DexScreener.
+  No tiene el pool con liquidez que se dijo. Esa razón era incorrecta.
+  La razón real por la que el otro se muestra y el nuestro no sigue sin estar verificada con datos.
+
+--- Comparar on-chain ---
+Comparando tokens en Solana mainnet
+
+MNCA:      6cfzjBSA6KSgUCGDCSPetyDUnxRBG1G1wyE7dLxnL34m
+Referencia: 38gRbAsqwiZMhMojWN3pFt27PCSitUfRGju3RDUi1QyD
+
+=== DATOS ON-CHAIN (getMint) ===
+
+| Atributo          | MNCA (nosotros)     | Referencia           |
+|-------------------|----------------------|----------------------|
+| Decimals          | 6                    | 6                    |
+| Supply            | 500000000000000000   | 15000000000000       |
+| Mint authority    | null (renunciado)    | null (renunciado)    |
+| Freeze authority  | null (renunciado)    | J3RX9CBrwB7vZmwNytRsJkJA9Wq7y6kwP25AZsX34TJa |
+
+=== METADATA (Metaplex on-chain) ===
+
+| Token      | ¿Tiene metadata? |
+|------------|------------------|
+| MNCA       | Sí
+| Referencia | Sí
+
+=== DIFERENCIAS (qué nos falta respecto al de referencia) ===
+
+1. Freeze authority: nosotros ya la tenemos renunciada; el de referencia no.

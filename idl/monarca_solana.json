@@ -1,0 +1,45 @@
+{
+  "address": "97k3YzUyZWYPVYCkMRkaHbpARiV4tzgSfDYVdbZg5Nbv",
+  "metadata": {
+    "name": "monarca_solana",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Token MONARCA (MNCA) en Solana"
+  },
+  "instructions": [
+    {
+      "name": "initialize_mint",
+      "discriminator": [209, 42, 195, 4, 129, 85, 209, 44],
+      "accounts": [
+        { "name": "mint", "writable": true },
+        { "name": "authority", "writable": true, "signer": true },
+        { "name": "rent" },
+        { "name": "token_program" },
+        { "name": "system_program" }
+      ],
+      "args": []
+    },
+    {
+      "name": "mint_tokens",
+      "discriminator": [59, 132, 24, 246, 122, 39, 8, 243],
+      "accounts": [
+        { "name": "mint", "writable": true },
+        { "name": "destination", "writable": true },
+        { "name": "authority", "signer": true },
+        { "name": "token_program" }
+      ],
+      "args": [{ "name": "amount", "type": "u64" }]
+    },
+    {
+      "name": "burn_tokens",
+      "discriminator": [76, 15, 51, 254, 229, 215, 121, 66],
+      "accounts": [
+        { "name": "mint", "writable": true },
+        { "name": "source", "writable": true },
+        { "name": "authority", "signer": true },
+        { "name": "token_program" }
+      ],
+      "args": [{ "name": "amount", "type": "u64" }]
+    }
+  ]
+}
